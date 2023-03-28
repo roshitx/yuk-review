@@ -59,7 +59,7 @@
 			{{-- Card 1 --}}
 			<div class="row justify-content-center">
 				<div class="movies col-6 col-md-3 my-3">
-					<div class="card">
+					<a href="#" class="card">
 						<img src="{{ asset('asset/gundala.jpg') }}" class="card-img-top img-thumbnail" alt="img-cover-film">
 						<div class="card-body">
 							<h5 class="card-title m-0">Gundala</h5>
@@ -68,14 +68,13 @@
 								Indonesia's preeminent comic book superhero and his alter ego Sancaka enter the cinematic universe to battle the
 								wicked Pengkor and his diabolical squad of orphan assassins.
 							</span>
-							<a class="d-block btn btn-outline-info" href="#" role="button">See details</a>
 						</div>
-					</div>
+					</a>
 				</div>
 
 				{{-- Card 2 --}}
 				<div class="col-6 col-md-3 my-3">
-					<div class="card">
+					<a href="#" class="card">
 						<img src="{{ asset('asset/habibie.jpg') }}" class="card-img-top img-thumbnail" alt="img-cover-film">
 						<div class="card-body">
 							<h5 class="card-title m-0">Habibie & Ainun</h5>
@@ -84,14 +83,13 @@
 								This movie is based on the memoir written by the 3rd President of Indonesia and one of the world-famous engineer,
 								B.J. Habibie about his wife, Hasri Ainun Habibie.
 							</span>
-							<a class="d-block btn btn-outline-info" href="#" role="button">See details</a>
 						</div>
-					</div>
+					</a>
 				</div>
 
 				{{-- Card 3 --}}
 				<div class="col-6 col-md-3 my-3">
-					<div class="card">
+					<a href="#" class="card">
 						<img src="{{ asset('asset/theraid2.jpg') }}" class="card-img-top img-thumbnail" alt="img-cover-film">
 						<div class="card-body">
 							<h5 class="card-title m-0">The Raid 2</h5>
@@ -100,9 +98,8 @@
 								Only a short time after the first raid, Rama goes undercover with the thugs of Jakarta and plans to bring down
 								the syndicate and uncover the corruption within his police force.
 							</span>
-							<a class="d-block btn btn-outline-info" href="#" role="button">See details</a>
 						</div>
-					</div>
+					</a>
 				</div>
 				{{-- Pagination example --}}
 				<nav aria-label="Page navigation example">

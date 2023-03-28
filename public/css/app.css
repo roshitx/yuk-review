@@ -74,3 +74,39 @@ div.display h1 {
     background-color: #0DCAF0 !Important;
     border: solid 1px #0DCAF0 !Important;
 }
+
+.featured-movies {
+  text-align: center;
+}
+
+.featured-movies::before, .featured-movies::after {
+    content: "";
+    display: inline-block;
+    width: 20%;
+    height: 2px;
+    background-color: #fff;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+
+.featured-movies h1 {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 10px;
+    vertical-align: middle;
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 400px; /* ganti tinggi gambar sesuai kebutuhan */
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
