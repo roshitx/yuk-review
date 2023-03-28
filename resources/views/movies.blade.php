@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-	<div class="h-50 w-full bg-warning bg-gradient"></div>
 	<div class="waves-1 position-relative">
 		<svg class="position-absolute z-n1 top-0 left-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
 			<path fill="#E49B0F" fill-opacity="1"
@@ -118,7 +117,7 @@
 			{{-- Card 5 --}}
 			<a href="#">
 				<div class="col mb-3">
-					<div class="card h-80">
+					<div class="card-movies h-80">
 						<img src="{{ asset('asset/tokosebela.jpg') }}" class="card-img-top" alt="..." style="">
 						<div class="card-body">
 							<h6 class="card-title">Cek Toko Sebelah</h6>

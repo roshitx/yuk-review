@@ -103,10 +103,10 @@ div.display h1 {
   height: 400px; /* ganti tinggi gambar sesuai kebutuhan */
 }
 
-.card {
+.card-movies {
     transition: transform 0.2s;
 }
 
-.card:hover {
+.card-movies:hover {
     transform: scale(1.1);
 }

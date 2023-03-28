@@ -13,6 +13,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+	{{-- Sweetalert --}}
+	<script src="sweetalert2.all.min.js"></script>
 	<title>YukReview | {{ $title }}</title>
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
