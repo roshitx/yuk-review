@@ -82,9 +82,9 @@
 							<label for="" class="form-label">Gender</label>
 							<div class="">
 								<select class="form-select" name="gender" id="">
-									<option value="other" selected>Other</option>
-									<option value="male">Male</option>
-									<option value="female">Female</option>
+									<option value="Other" selected>Other</option>
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
 								</select>
 							</div>
 						</div>
@@ -99,7 +99,7 @@
 					</form>
 				</div>
 				<div class="col-md-9 col-lg-6 col-xl-5 mb-3">
-					<img src="{{ asset('asset/register.svg') }}" class="img-fluid" alt="Sample image">
+					<img src="{{ asset('asset/register.svg') }}" class="img-fluid" alt="Sample image" draggable="false">
 				</div>
 			</div>
 		</div>

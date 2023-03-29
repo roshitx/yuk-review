@@ -117,7 +117,7 @@
 			{{-- Card 5 --}}
 			<a href="#">
 				<div class="col mb-3">
-					<div class="card-movies h-80">
+					<div class="card h-80">
 						<img src="{{ asset('asset/tokosebela.jpg') }}" class="card-img-top" alt="..." style="">
 						<div class="card-body">
 							<h6 class="card-title">Cek Toko Sebelah</h6>

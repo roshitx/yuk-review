@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UpdatePasswordController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +22,7 @@ Route::get('/', function () {
         'active' => '/',
         'title' => 'Home'
     ]);
-});
+})->name('home');
 
 
 Route::get('/movies', function () {
@@ -30,17 +32,13 @@ Route::get('/movies', function () {
     ]);
 });
 
-Route::get('/news', function () {
-    return view('news', [
-        'active' => 'news',
-        'title' => 'News'
-    ]);
-});
-
 // Routes profile && profile update
 Route::get('/admin', [AdminController::class, 'index'])->middleware('auth')->name('admin');
 Route::put('/admin/update', 'App\Http\Controllers\AdminController@update')->middleware('auth')->name('admin.update');
 
+// Change password
+Route::get('changepw', [UpdatePasswordController::class, 'index'])->middleware('auth')->name('password.edit');
+Route::put('changepw/update', 'App\Http\Controllers\UpdatePasswordController@update')->middleware('auth')->name('password.update');
 
 // Routes login
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
