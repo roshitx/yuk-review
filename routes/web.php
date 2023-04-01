@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DetailMovieController;
 use App\Http\Controllers\UpdatePasswordController;
 
 /*
@@ -32,6 +33,8 @@ Route::get('/movies', function () {
     ]);
 });
 
+Route::get('/detail', [DetailMovieController::class, 'index'])->name('detail-movies');
+
 // Routes profile && profile update
 Route::get('/admin', [AdminController::class, 'index'])->middleware('auth')->name('admin');
 Route::put('/admin/update', 'App\Http\Controllers\AdminController@update')->middleware('auth')->name('admin.update');
@@ -48,3 +51,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // Routes register
 Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
+
+// Login by Google
+// Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

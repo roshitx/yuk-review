@@ -71,7 +71,7 @@
 			</a>
 
 			{{-- Card 3 --}}
-			<a href="#">
+			<a href="{{ route('detail-movies') }}">
 				<div class="col mb-3">
 					<div class="card h-80">
 						<img src="{{ asset('asset/theraid2.jpg') }}" class="card-img-top" alt="..." style="">

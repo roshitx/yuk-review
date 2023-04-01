@@ -89,7 +89,7 @@
 
 				{{-- Card 3 --}}
 				<div class="col-6 col-md-3 my-3">
-					<a href="#" class="card">
+					<a href="{{ route('detail-movies') }}" class="card">
 						<img src="{{ asset('asset/theraid2.jpg') }}" class="card-img-top img-thumbnail" alt="img-cover-film">
 						<div class="card-body">
 							<h5 class="card-title m-0">The Raid 2</h5>
