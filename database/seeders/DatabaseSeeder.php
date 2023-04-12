@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $gender = $faker->randomElement(['Male','Female','Other']);
         User::create([
             'name' => 'Muhammad Aulia Rasyid Alzahrawi',
-            'email' => 'roshit@gmail.com',
+            'email' => 'auliarasyidalzahrawi@gmail.com',
             'password' => bcrypt('rosyid07'),
             'gender' => $gender
         ]);

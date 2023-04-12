@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DetailMovieController;
+use App\Http\Controllers\ViewController;
 use App\Http\Controllers\UpdatePasswordController;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ScrapperController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,7 @@ Route::get('/movies', function () {
     ]);
 });
 
-Route::get('/detail', [DetailMovieController::class, 'index'])->name('detail-movies');
+Route::get('/detail/{id}', [ViewController::class, 'detail'])->name('detail-movies');
 
 // Routes profile && profile update
 Route::get('/admin', [AdminController::class, 'index'])->middleware('auth')->name('admin');
@@ -51,6 +53,11 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // Routes register
 Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
+
+// Routes manage movies
+Route::get('/admin/movies', [MovieController::class, 'view'])->name('manage.movies');
+Route::post('/scrap', [ScrapperController::class, 'scrapMovie'])->name('scrap.movie');
+
 
 // Login by Google
 // Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

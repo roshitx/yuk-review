@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{-- Bootstrap css --}}
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <title>YukReview | {{ $title }}</title>
+  {{-- SweetAlert --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  {{-- FontAwesom --}}
+  <script src="https://kit.fontawesome.com/024c1ae29f.js" crossorigin="anonymous"></script>
+    <title>{{ $title }} - YukReview</title>
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">

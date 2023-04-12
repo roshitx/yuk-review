@@ -5,25 +5,27 @@
 		<div class="container">
 			<div class="card col-12">
 				<div class="card-header" id="title-movies">
-					<h1 class="card-title fw-bold m-0 px-5">The Raid 2</h1>
-					<p class="card-text px-5">2014 | 18+ | 2h 30m</p>
+					<h1 class="card-title fw-bold m-0 px-5">{{ $movie->title }}</h1>
+					<p class="card-text px-5">{{ $movie->year }} | {{ $movie->duration }}</p>
 				</div>
 				<div class="card-body px-5">
 					<div class="row">
 						<div class="col-lg-4 col-md-12 mb-md-3">
-							<img src="{{ asset('asset/theraid2.jpg') }}" alt="img-detail" class="img-thumbnail rounded" draggable="false">
+							<img src="{{ $movie->poster }}" alt="img-detail" class="img-thumbnail rounded" draggable="false">
 						</div>
 						<div class="col-lg-8 col-md-12 d-flex flex-column justify-content-center">
 							<div class="mb-1">
-								<span class="badge text-bg-warning my-2">Action, Crime, Thriller</span>
+								<span class="badge text-bg-warning my-2">{{ $movie->genre }}</span>
 							</div>
 							<div class="mb-1">
-								<span><i class="bi bi-star-fill text-warning"></i> 7.9/10</span>
+								<span><i class="bi bi-star-fill text-warning"></i> {{ $movie->rating }}/10</span>
+							</div>
+							<div class="mb-1">
+								<span><i class="bi bi-person-check-fill"></i> {{ $movie->rating_count }}</span>
 							</div>
 							<div class="mt-3">
 								<span class="fs-3 fw-bold"><i class="bi bi-file-text"></i> Synopsis</span>
-								<p class="mt-1">Only a short time after the first raid, Rama goes undercover with the thugs of Jakarta and
-									plans to bring down the syndicate and uncover the corruption within his police force.</p>
+								<p class="mt-1">{{ $movie->synopsis }}</p>
 							</div>
 						</div>
 					</div>
@@ -40,9 +42,10 @@
 		<div class="card col-12 px-5 shadow-lg">
 			<div class="card-header" id="title-movies">
 				<h1 class="card-title fw-bold mb-3">Trailer</h1>
-				<div class="col-12 col-md-8 offset-md-2 shadow-lg">
-					<iframe width="100%" height="400" src="https://www.youtube.com/embed/MG9uFX3uYq4" title="YouTube video player"
-						frameborder="0"
+			</div>
+			<div class="card-body">
+				<div class="col-md-12 col-6 shadow-lg d-flex justify-content-center">
+					<iframe width="100%" height="400" src="{{ $movie->trailer }}" frameborder="0"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 						allowfullscreen></iframe>
 				</div>

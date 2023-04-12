@@ -21,7 +21,7 @@
 							{{ auth()->user()->name }}
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="/admin"><i class="bi bi-person-circle"></i> Profile</a></li>
+							<li><a class="dropdown-item" href="{{ route('admin') }}" target="_blank"><i class="bi bi-person-circle"></i> Profile</a></li>
 							<li><hr class="dropdown-divider"></li>
                             <li>
                                 <form action="{{  route('logout') }}" method="post">
