@@ -11,7 +11,7 @@ html {
 }
 
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 16px;
     line-height: 1.5;
     overflow-x: hidden;
@@ -51,30 +51,6 @@ div.display h1 {
     object-fit: cover;
 }
 
-/* Pagination */
-.pagination > li > a
-{
-    background-color: white;
-    color: #0DCAF0;
-}
-
-.pagination > li > a:focus,
-.pagination > li > a:hover,
-.pagination > li > span:focus,
-.pagination > li > span:hover
-{
-    color: #5a5a5a;
-    background-color: #eee;
-    border-color: #ddd;
-}
-
-.pagination > .active > a
-{
-    color: white;
-    background-color: #0DCAF0 !Important;
-    border: solid 1px #0DCAF0 !Important;
-}
-
 .featured-movies {
   text-align: center;
 }
@@ -109,28 +85,6 @@ div.display h1 {
 
 .card-movies:hover {
     transform: scale(1.1);
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #fbff00, #f5af19);
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #f5af19, #fbff00);
 }
 
 .bg-color {

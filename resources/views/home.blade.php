@@ -54,71 +54,30 @@
 		</path>
 	</svg>
 
-		<div style="background-color: #E49B0F;">
-			<h1 class="fs-3 fw-bolder pb-3 text-center text-white">Movies</h1>
-			{{-- Card 1 --}}
+	<div style="background-color: #E49B0F;">
+		<h1 class="fs-3 fw-bolder pb-3 text-center text-white">Movies</h1>
+		<div class="container">
 			<div class="row justify-content-center">
-				<div class="movies col-6 col-md-3 my-3">
-					<a href="#" class="card">
-						<img src="{{ asset('asset/gundala.jpg') }}" class="card-img-top img-thumbnail" alt="img-cover-film">
-						<div class="card-body">
-							<h5 class="card-title m-0">Gundala</h5>
-							<span class="badge text-bg-warning my-2">Action, Adventure, Drama</span>
-							<span class="d-inline-block text-truncate" style="max-width: 200px;">
-								Indonesia's preeminent comic book superhero and his alter ego Sancaka enter the cinematic universe to battle the
-								wicked Pengkor and his diabolical squad of orphan assassins.
-							</span>
-						</div>
-					</a>
-				</div>
-
-				{{-- Card 2 --}}
-				<div class="col-6 col-md-3 my-3">
-					<a href="#" class="card">
-						<img src="{{ asset('asset/habibie.jpg') }}" class="card-img-top img-thumbnail" alt="img-cover-film">
-						<div class="card-body">
-							<h5 class="card-title m-0">Habibie & Ainun</h5>
-							<span class="badge text-bg-warning my-2">Biography, Drama, Romance</span>
-							<span class="d-inline-block text-truncate" style="max-width: 200px;">
-								This movie is based on the memoir written by the 3rd President of Indonesia and one of the world-famous engineer,
-								B.J. Habibie about his wife, Hasri Ainun Habibie.
-							</span>
-						</div>
-					</a>
-				</div>
-
-				{{-- Card 3 --}}
-				<div class="col-6 col-md-3 my-3">
-					<a href="{{ route('detail-movies') }}" class="card">
-						<img src="{{ asset('asset/theraid2.jpg') }}" class="card-img-top img-thumbnail" alt="img-cover-film">
-						<div class="card-body">
-							<h5 class="card-title m-0">The Raid 2</h5>
-							<span class="badge text-bg-warning my-2">Action, Crime, Thriller</span>
-							<span class="d-inline-block text-truncate" style="max-width: 200px;">
-								Only a short time after the first raid, Rama goes undercover with the thugs of Jakarta and plans to bring down
-								the syndicate and uncover the corruption within his police force.
-							</span>
-						</div>
-					</a>
-				</div>
-				{{-- Pagination example --}}
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center container">
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Next">
-								<span aria-hidden="true"><i class="bi bi-caret-left"></i></span>
-							</a>
-						</li>
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Next">
-								<span aria-hidden="true"><i class="bi bi-caret-right"></i></span>
-							</a>
-						</li>
-					</ul>
-				</nav>
+				@foreach ($movies as $movie)
+					<div class="movies col-6 col-md-3 my-3">
+						<a href="{{ route('detail.movies', ['id' => $movie->id]) }}" class="card">
+							<img src="{{ $movie->poster }}" class="card-img-top img-thumbnail" alt="img-cover-film">
+							<div class="card-body">
+								<h5 class="card-title m-0">{{ $movie->title }}</h5>
+								<span class="badge text-bg-warning my-2">{{ $movie->genre }}</span>
+								<span class="d-inline-block text-truncate" style="max-width: 200px;">
+									{{ $movie->synopsis }}
+								</span>
+							</div>
+						</a>
+					</div>
+				@endforeach
 			</div>
+			{{-- Pagination --}}
+				{{ $movies->links('pagination::bootstrap-5') }}
 		</div>
+
+
+	</div>
+	</div>
 @endsection

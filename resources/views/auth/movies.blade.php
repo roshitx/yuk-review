@@ -1,19 +1,19 @@
 @extends('auth.layouts.main')
 
 @section('content')
-	<div class="col-lg-10 mb-5 mt-5">
+	<div class="col-lg-12 mb-5 mt-5">
 		<h1 class="mb-4">Manage Movies</h1>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="card mb-3 shadow-lg">
 					<div class="card-header">
-						<h5 class="card-title mb-0">Scrapping Data from IMDB</h5>
+						<h5 class="card-title mb-0">Scrapping Data from IMDb</h5>
 					</div>
 					<div class="card-body">
 						<form method="POST" action="{{ route('scrap.movie') }}" id="form-scrapper">
 							@csrf
 							<div class="form-group">
-								<label for="imdbUrl" class="form-label">Put IMDB link</label>
+								<label for="imdbUrl" class="form-label">Put IMDb link</label>
 								<input id="imdbUrl" type="text" class="form-control" name="imdbUrl">
 								<div class="d-flex justify-content-end mt-3 mb-3">
 									<button type="submit" id="submit-button" class="btn btn-primary">Scrap</button>
@@ -39,6 +39,13 @@
 					<div class="alert alert-danger" role="alert">
 						{{ session('error') }}
 					</div>
+					<script>
+						Swal.fire({
+							icon: 'error',
+							title: 'Fail',
+							text: '{{ session('error') }}',
+						});
+					</script>
 				@endif
 			</div>
 			<div class="col-md-6">
@@ -91,25 +98,25 @@
 		</div>
 	</div>
 
-	<div class="col-lg-10 mb-5 mt-5">
+	<div class="col-lg-12 mb-5 mt-5">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="card">
+				<div class="card mb-3 shadow-lg">
 					<div class="card-header">
 						<h5 class="card-title mb-0">All Movies</h5>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table-striped table">
+							<table class="table-striped table" id="myTable">
 								<thead>
 									<tr>
 										<th>No</th>
+										<th>Poster</th>
 										<th>Title</th>
 										<th>Genre</th>
 										<th>Duration</th>
 										<th>Year</th>
 										<th>Synopsis</th>
-										<th>Poster</th>
 										<th>Rating</th>
 										<th>Action</th>
 									</tr>
@@ -118,17 +125,19 @@
 									@foreach ($movies as $movie)
 										<tr>
 											<td>{{ $loop->iteration }}</td>
+											<td><img src="{{ $movie->poster }}" height="100" /></td>
 											<td>{{ $movie->title }}</td>
 											<td>{{ $movie->genre }}</td>
 											<td>{{ $movie->duration }}</td>
 											<td>{{ $movie->year }}</td>
 											<td>{{ $movie->synopsis }}</td>
-											<td><img src="{{ $movie->poster }}" height="100" /></td>
+
 											<td>{{ $movie->rating }}/10</td>
 											<td>
-												<a href="/detail/{{ $movie->id }}" class="btn btn-info"><i class="fa-solid fa-eye" style="color: #fff;"></i></a>
-												<a href="#" class="btn btn-warning mt-2"><i class="fa-solid fa-pen-to-square"
+												<a href="/detail/{{ $movie->id }}" class="btn btn-info"><i class="fa-solid fa-eye"
 														style="color: #fff;"></i></a>
+												<a href="{{ route('movie.edit', ['id' => $movie->id]) }}" class="btn btn-warning mt-2"><i
+														class="fa-solid fa-pen-to-square" style="color: #fff;"></i></a>
 												<a href="#" class="btn btn-danger mt-2"><i class="fa-solid fa-trash" style="color: #fff;"></i></a>
 											</td>
 										</tr>
@@ -141,4 +150,9 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$(document).ready(function() {
+			$('#myTable').DataTable();
+		});
+	</script>
 @endsection

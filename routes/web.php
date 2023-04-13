@@ -19,26 +19,14 @@ use App\Http\Controllers\ScrapperController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home', [
-        'active' => '/',
-        'title' => 'Home'
-    ]);
-})->name('home');
-
-
-Route::get('/movies', function () {
-    return view('movies', [
-        'active' => 'movies',
-        'title' => 'Movies'
-    ]);
-});
-
-Route::get('/detail/{id}', [ViewController::class, 'detail'])->name('detail-movies');
+// Route for landingpage and movies
+    Route::get('/', [ViewController::class, 'home'])->name('home');
+    Route::get('/movies', [ViewController::class, 'allMovies'])->name('all.movies');
+    Route::get('/detail/{id}', [ViewController::class, 'detail'])->name('detail.movies');
+    Route::get('/movies/search', [ViewController::class, 'searchMovie'])->name('search.movies');
 
 // Routes profile && profile update
-Route::get('/admin', [AdminController::class, 'index'])->middleware('auth')->name('admin');
+Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth')->name('admin');
 Route::put('/admin/update', 'App\Http\Controllers\AdminController@update')->middleware('auth')->name('admin.update');
 
 // Change password
@@ -55,8 +43,18 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register')-
 Route::post('/register', [RegisterController::class, 'store']);
 
 // Routes manage movies
-Route::get('/admin/movies', [MovieController::class, 'view'])->name('manage.movies');
 Route::post('/scrap', [ScrapperController::class, 'scrapMovie'])->name('scrap.movie');
+
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
+    Route::group(['prefix' => 'movies'], function () {
+
+        Route::get('/', [MovieController::class, 'view'])->name('manage.movies');
+        Route::post('/add', [MovieController::class, 'create'])->name('movie.add');
+        Route::get('/edit/{id}', [MovieController::class, 'updateView'])->name('movie.edit');
+        Route::post('/edit/{id}', [MovieController::class, 'update'])->name('movie.update');
+        Route::get('/delete/{id}', [MovieController::class, 'delete'])->name('movie.delete');
+    });
+});
 
 
 // Login by Google

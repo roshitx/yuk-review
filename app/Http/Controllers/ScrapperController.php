@@ -34,6 +34,11 @@ class ScrapperController extends Controller
                 'rating_count' => $IMDB->getRatingCount(),
             ];
 
+            $existingMovie = Movie::where('title', $movieData['title'])->first();
+            if ($existingMovie) {
+                return redirect()->back()->with('error', 'Movie already exists in the database');
+            }
+
             Movie::create($movieData);
 
             return redirect()->back()->with('success', 'Movie has been scrapped successfully');

@@ -3,9 +3,9 @@
         <ul class="nav flex-column">
           <li class="nav-item">
             {{-- Kalau ada request url nya tampilin class active, kalau gaada kosongin. --}}
-            <a class="nav-link {{ Request::is('admin') ? 'active' : '' }} d-inline-block" href="{{ route('admin') }}">
+            <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }} d-inline-block" href="{{ route('admin') }}">
               <span data-feather="edit" class="align-text-bottom"></span>
-              <span class="d-inline-block align-middle">Edit Profile Information</span>
+              <span class="d-inline-block align-middle">Profile Information</span>
             </a>
           </li>
           <li class="nav-item">
@@ -15,7 +15,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('admin/movies*') ? 'active' : '' }} d-inline-block" href="{{ route('manage.movies') }}">
+            <a class="nav-link {{ Request::is('dashboard/movies*') ? 'active' : '' }} d-inline-block" href="{{ route('manage.movies') }}">
               <span data-feather="film" class="align-text-bottom"></span>
               <span class="d-inline-block align-middle">Movies</span>
             </a>
