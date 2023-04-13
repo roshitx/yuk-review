@@ -17,12 +17,20 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         
         $faker = Faker::create('id_ID');
-        $gender = $faker->randomElement(['Male','Female','Other']);
         User::create([
             'name' => 'Muhammad Aulia Rasyid Alzahrawi',
             'email' => 'auliarasyidalzahrawi@gmail.com',
             'password' => bcrypt('rosyid07'),
-            'gender' => $gender
+            'gender' => 'Male',
+            'role' => 'admin' 
+        ]);
+
+        User::create([
+            'name' => 'Bukan Admin',
+            'email' => 'bukanadmin@gmail.com',
+            'password' => bcrypt('rosyid07'),
+            'gender' => 'Male',
+            'role' => 'user' 
         ]);
 
 

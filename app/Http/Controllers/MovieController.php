@@ -14,6 +14,26 @@ class MovieController extends Controller
             ->with('title', 'Manage Movies')
             ->with('active', 'manage.movies');
     }
+
+    public function create(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required',
+            'genre' => 'required',
+            'duration' => 'required',
+            'year' => 'required',
+            'synopsis' => 'required',
+            'poster' => 'required',
+            'trailer' => 'required',
+            'rating' => 'required',
+            'rating_count' => 'required'
+        ]);
+
+        Movie::create($validated);
+        return redirect()->route('manage.movies')->with('success', 'Movie added successfully');
+
+    }
+
     public function updateView($id)
     {
         $movie = Movie::find($id);
@@ -50,4 +70,16 @@ class MovieController extends Controller
             return redirect()->route('movie.edit', ['id' => $id])->with('error', 'Failed to update movie.');
         }
     }
+
+    public function destroy($id)
+    {
+        $movie = Movie::find($id);
+
+        if (!$movie) {
+            return redirect()->back()->with('error', 'Movie not found.');
+        }
+        $movie->delete();
+        return redirect()->back()->with('success', 'Movie has been deleted.');
+    }
+
 }

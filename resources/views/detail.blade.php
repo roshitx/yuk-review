@@ -11,7 +11,7 @@
 				<div class="card-body px-5">
 					<div class="row">
 						<div class="col-lg-4 col-md-12 mb-md-3">
-							<img src="{{ $movie->poster }}" alt="img-detail" class="img-thumbnail rounded" draggable="false">
+							<img src="{{ $movie->poster }}" alt="Poster {{ $movie->title }}" class="img-thumbnail rounded" draggable="false">
 						</div>
 						<div class="col-lg-8 col-md-12 d-flex flex-column justify-content-center">
 							<div class="mb-1">

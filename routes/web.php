@@ -27,11 +27,11 @@ use App\Http\Controllers\ScrapperController;
 
 // Routes profile && profile update
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth')->name('admin');
-Route::put('/admin/update', 'App\Http\Controllers\AdminController@update')->middleware('auth')->name('admin.update');
+Route::put('/admin/update', [AdminController::class, 'update'])->middleware('auth')->name('admin.update');
 
 // Change password
 Route::get('changepw', [UpdatePasswordController::class, 'index'])->middleware('auth')->name('password.edit');
-Route::put('changepw/update', 'App\Http\Controllers\UpdatePasswordController@update')->middleware('auth')->name('password.update');
+Route::put('changepw/update', [UpdatePasswordController::class, 'update'])->middleware('auth')->name('password.update');
 
 // Routes login
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
@@ -44,15 +44,19 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // Routes manage movies
 Route::post('/scrap', [ScrapperController::class, 'scrapMovie'])->name('scrap.movie');
-
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
-    Route::group(['prefix' => 'movies'], function () {
-
-        Route::get('/', [MovieController::class, 'view'])->name('manage.movies');
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'movies', 'middleware' => 'admin'], function () {
+        Route::get('/', [MovieController::class, 'view'])->name('manage.movies')->middleware('admin');
         Route::post('/add', [MovieController::class, 'create'])->name('movie.add');
         Route::get('/edit/{id}', [MovieController::class, 'updateView'])->name('movie.edit');
         Route::post('/edit/{id}', [MovieController::class, 'update'])->name('movie.update');
-        Route::get('/delete/{id}', [MovieController::class, 'delete'])->name('movie.delete');
+        Route::delete('/delete/{id}', [MovieController::class, 'destroy'])->name('movie.delete');
+    });
+    Route::group(['prefix' => 'users', 'middleware' => 'admin'], function () {
+        Route::get('/', 'UserController@index')->name('user.index');
+        Route::get('/{id}/edit', 'UserController@edit')->name('user.edit');
+        Route::post('/{id}', 'UserController@update')->name('user.update');
+        Route::delete('/{id}', 'UserController@delete')->name('user.delete');
     });
 });
 

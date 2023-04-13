@@ -18,11 +18,30 @@
 					<div class="alert alert-success" role="alert">
 						{{ session('success') }}
 					</div>
+					<script>
+						Swal.fire({
+							icon: 'success',
+							title: 'Success',
+							text: '{{ session('success') }}',
+						});
+					</script>
+				@endif
+				@if (session()->has('error')))
+					<div class="alert alert-danger" role="alert">
+						{{ session('error') }}
+					</div>
+					<script>
+						Swal.fire({
+							icon: 'error',
+							title: 'Error',
+							text: '{{ session('error') }}',
+						});
+					</script>
 				@endif
 			</div>
 			<div class="col-md-8">
 				<div class="card shadow-lg">
-					<div class="card-header">
+					<div class="card-header bg-warning">
 						<h5 class="card-title fw-5 m-0">Edit Profile</h5>
 					</div>
 					<div class="card-body">
@@ -53,12 +72,12 @@
 							<div class="mb-3">
 								<label for="gender" class="form-label">Gender</label>
 								<select class="form-select" name="gender" id="gender">
-									<option selected value="{{ old('gender', Auth::user()->gender) }}">{{ $user->gender }}</option>
-									<option value="Male">Male</option>
-									<option value="Female">Female</option>
-									<option value="Other">Other</option>
+									<option value="Male" {{ old('gender', Auth::user()->gender) == 'Male' ? 'selected' : '' }}>Male</option>
+									<option value="Female" {{ old('gender', Auth::user()->gender) == 'Female' ? 'selected' : '' }}>Female</option>
+									<option value="Other" {{ old('gender', Auth::user()->gender) == 'Other' ? 'selected' : '' }}>Other</option>
 								</select>
 							</div>
+
 							<button type="submit" class="btn btn-primary">Edit</button>
 						</form>
 					</div>
@@ -66,13 +85,4 @@
 			</div>
 		</div>
 	</div>
-	{{-- @if (Session::get('success'))
-		<script>
-			Swal.fire({
-				icon: 'success',
-				title: 'Success!',
-				text: "{{ Session::get('success') }}",
-			})
-		</script>
-	@endif --}}
 @endsection

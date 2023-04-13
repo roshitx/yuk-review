@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light navbar-expand-md navbar-dark justify-content-center">
+<nav class="navbar navbar-light navbar-expand-md navbar-dark justify-content-center fw-bold">
 	<div class="container">
 		<a href="/" class="navbar-brand d-flex w-50 me-auto">YukReview</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsingNavbar3">

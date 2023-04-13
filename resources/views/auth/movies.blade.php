@@ -54,38 +54,48 @@
 						<h5 class="card-title mb-0">Add Movie Manually</h5>
 					</div>
 					<div class="card-body">
-						<form action="" method="">
+						<form action="{{ route('movie.add') }}" method="POST">
+							@csrf
 							<div class="mb-3">
 								<label for="title">Title</label>
-								<input type="text" id="title" name="title" class="form-control">
+								<input type="text" id="title" name="title" class="form-control" placeholder="Example : Interstellar">
 							</div>
 							<div class="mb-3">
 								<label for="genre">Genre</label>
-								<input type="text" id="genre" name="genre" class="form-control">
+								<input type="text" id="genre" name="genre" class="form-control" placeholder="Example : Scifi / Drama">
 							</div>
 							<div class="mb-3">
 								<label for="duration">Duration</label>
-								<input type="text" id="duration" name="duration" class="form-control">
+								<input type="text" id="duration" name="duration" class="form-control" placeholder="Example : 169 min">
 							</div>
 							<div class="mb-3">
-								<label for="release_date">Release Date</label>
-								<input type="text" id="release_date" name="release_date" class="form-control">
+								<label for="year">Year Release</label>
+								<input type="text" id="year" name="year" class="form-control" placeholder="Example : 2014">
 							</div>
 							<div class="mb-3">
 								<label for="synopsis">Synopsis</label>
-								<input type="text" id="synopsis" name="synopsis" class="form-control">
+								<textarea name="synopsis" id="synopsis" cols="30" rows="10" class="form-control" placeholder="Write a synopsis here..."></textarea>
 							</div>
 							<div class="mb-3">
 								<label for="poster">Poster (URL)</label>
-								<input type="text" id="poster" name="poster" class="form-control">
+								<input type="text" id="poster" name="poster" class="form-control" placeholder="Example : amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UY1200_CR90,0,630,1200_AL_.jpg">
 							</div>
 							<div class="mb-3">
 								<label for="trailer">Trailer (URL)</label>
-								<input type="text" id="trailer" name="trailer" class="form-control">
+								<input type="text" id="trailer" name="trailer" class="form-control" placeholder="Example : https://www.imdb.com/video/imdb/vi1586278169/imdb/embed">
+							</div>
+							<div class="mb-3">
+								<label for="rating_count">Rating Count</label>
+								<input type="text" id="rating_count" name="rating_count" class="form-control" placeholder="Example : 1888905">
 							</div>
 							<div class="mb-3">
 								<label for="rating">Rating</label>
-								<input type="text" id="rating" name="rating" class="form-control">
+								<select name="rating" id="rating" class="form-select">
+									@for ($i = 1; $i <= 10; $i++)
+										<option value="{{ $i }}">★ {{ $i }}
+										</option>
+									@endfor
+								</select>
 							</div>
 							<div class="d-flex justify-content-end mb-3">
 								<button type="submit" class="btn btn-primary">Add</button>
@@ -138,10 +148,17 @@
 														style="color: #fff;"></i></a>
 												<a href="{{ route('movie.edit', ['id' => $movie->id]) }}" class="btn btn-warning mt-2"><i
 														class="fa-solid fa-pen-to-square" style="color: #fff;"></i></a>
-												<a href="#" class="btn btn-danger mt-2"><i class="fa-solid fa-trash" style="color: #fff;"></i></a>
+												<form id="delete-movie-form-{{ $movie->id }}" action="{{ route('movie.delete', ['id' => $movie->id]) }}" method="POST">
+													@csrf
+													@method('DELETE')
+													<button type="submit" onsubmit="return confirm('Are you sure you want to delete this movie?')" class="btn btn-danger mt-2"><i class="fa-solid fa-trash"
+															style="color: #fff;"></i></button>
+												</form>
 											</td>
 										</tr>
 									@endforeach
+									<script>
+									</script>
 								</tbody>
 							</table>
 						</div>

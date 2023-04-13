@@ -41,7 +41,7 @@ class AdminController extends Controller
 
             return back()->with('success', 'Your profile has been updated!');
         } catch (ItemNotFoundException $e) {
-            // handle exception
+            return redirect()->back()->with('error', 'Unable to change your profile information!');
         }
     }
 }
