@@ -8,6 +8,7 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\UpdatePasswordController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ScrapperController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,21 +43,24 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-// Routes manage movies
+// Routes manage movies & manage users
 Route::post('/scrap', [ScrapperController::class, 'scrapMovie'])->name('scrap.movie');
-Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
-    Route::group(['prefix' => 'movies', 'middleware' => 'admin'], function () {
-        Route::get('/', [MovieController::class, 'view'])->name('manage.movies')->middleware('admin');
+Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
+
+    // movies
+    Route::prefix('movies')->group(function () {
+        Route::get('/', [MovieController::class, 'view'])->name('manage.movies');
         Route::post('/add', [MovieController::class, 'create'])->name('movie.add');
         Route::get('/edit/{id}', [MovieController::class, 'updateView'])->name('movie.edit');
         Route::post('/edit/{id}', [MovieController::class, 'update'])->name('movie.update');
-        Route::delete('/delete/{id}', [MovieController::class, 'destroy'])->name('movie.delete');
+        Route::delete('/destroy/{id}', [MovieController::class, 'destroy'])->name('movie.delete');
     });
-    Route::group(['prefix' => 'users', 'middleware' => 'admin'], function () {
-        Route::get('/', 'UserController@index')->name('user.index');
-        Route::get('/{id}/edit', 'UserController@edit')->name('user.edit');
-        Route::post('/{id}', 'UserController@update')->name('user.update');
-        Route::delete('/{id}', 'UserController@delete')->name('user.delete');
+    // users
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'viewAllUser'])->name('user.index');
+        Route::get('/edit/{id}', [UserController::class, 'viewEditUser'])->name('user.edit');
+        Route::post('/edit/update', [UserController::class, 'updateUser'])->name('user.update');
+        Route::delete('/destroy/{id}', [UserController::class, 'deleteUser'])->name('user.delete');
     });
 });
 

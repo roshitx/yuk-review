@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Movie;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -17,7 +18,7 @@ class ScrapperController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors());
+            return redirect()->back()->with('error', 'You must enter a valid imdb url');
         }
 
         $IMDB = new IMDBController($request->imdbUrl);
@@ -39,11 +40,15 @@ class ScrapperController extends Controller
                 return redirect()->back()->with('error', 'Movie already exists in the database');
             }
 
-            Movie::create($movieData);
 
-            return redirect()->back()->with('success', 'Movie has been scrapped successfully');
-        } else {
-            return redirect()->back()->with('error', 'Unable to scrap ' . $request->imdbUrl);
+            try {
+                Movie::create($movieData);
+                return redirect()->back()->with('success', 'Movie has been scrapped successfully');
+            } catch (Exception $e) {
+                return redirect()->back()->with('error', 'Unable to scrap ' . $request->imdbUrl);
+            }
+            
+            
         }
     }
 }

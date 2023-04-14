@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use Exception;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -29,16 +30,19 @@ class MovieController extends Controller
             'rating_count' => 'required'
         ]);
 
-        Movie::create($validated);
-        return redirect()->route('manage.movies')->with('success', 'Movie added successfully');
-
+        try {
+            Movie::create($validated);
+            return redirect()->route('manage.movies')->with('success', 'Movie added successfully');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Failed to add movie. Please try again.');
+        }
     }
 
     public function updateView($id)
     {
         $movie = Movie::find($id);
 
-        return view('auth.edit', [
+        return view('auth.edit-movie', [
             'title' => 'Edit Movies',
             'active' => 'Edit',
             'movie' => $movie

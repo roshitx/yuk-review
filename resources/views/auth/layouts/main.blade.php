@@ -6,6 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	{{-- Bootstrap css --}}
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+	{{-- Bootstrap Icon --}}
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 	{{-- SweetAlert --}}
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	{{-- FontAwesome --}}
@@ -28,6 +30,7 @@
 
 	<!-- Custom styles for this template -->
 	<link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body style="font-family: 'Inter', sans-serif;">

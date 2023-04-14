@@ -32,27 +32,28 @@
 							@csrf
 							@method('put')
 							<div class="mb-3">
-								<label for="current_password" class="form-label">Current Password</label>
-								<input type="password" class="form-control @error('current_password') is-invalid @enderror" id="current_password" name="current_password">
+								<label for="current_password" class="form-label">Current Password <span class="text-danger">*</span></label>
+								<input type="password" class="form-control @error('current_password') is-invalid @enderror" id="current_password" name="current_password" aria-describedby="currentPassword">
+								<div id="currentPassword" class="form-text">Please fill your correct current password</div>
 								@error('current_password')
 									<div class="invalid-feedback">{{ $message }}</div>
 								@enderror
 							</div>
 							<div class="mb-3">
-								<label for="password" class="form-label">New Password</label>
+								<label for="password" class="form-label">New Password <span class="text-danger">*</span></label>
 								<input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
 								@error('password')
 									<div class="invalid-feedback">{{ $message }}</div>
 								@enderror
 							</div>
 							<div class="mb-3">
-								<label for="password_confirmation" class="form-label">Password Confirmation</label>
+								<label for="password_confirmation" class="form-label">Password Confirmation <span class="text-danger">*</span></label>
 								<input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation">
 								@error('password_confirmation')
 									<div class="invalid-feedback">{{ $message }}</div>
 								@enderror
 							</div>
-							<button type="submit" class="btn btn-primary">Save</button>
+							<button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save</button>
 						</form>
 					</div>
 				</div>

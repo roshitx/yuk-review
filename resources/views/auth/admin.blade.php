@@ -49,7 +49,7 @@
 							@csrf
 							@method('put')
 							<div class="mb-3">
-								<label for="name" class="form-label">Name</label>
+								<label for="name" class="form-label">Name <span class="text-danger">*</span></label>
 								<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
 									value="{{ old('name', Auth::user()->name) }}" required>
 								@error('name')
@@ -57,7 +57,7 @@
 								@enderror
 							</div>
 							<div class="mb-3">
-								<label for="email" class="form-label">Email</label>
+								<label for="email" class="form-label">Email <span class="text-danger">*</span></label>
 								<input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
 									value="{{ old('email', Auth::user()->email) }}" required>
 								@error('email')
@@ -70,7 +70,7 @@
 									value="{{ old('birth', Auth::user()->birth) }}">
 							</div>
 							<div class="mb-3">
-								<label for="gender" class="form-label">Gender</label>
+								<label for="gender" class="form-label">Gender <span class="text-danger">*</span></label>
 								<select class="form-select" name="gender" id="gender">
 									<option value="Male" {{ old('gender', Auth::user()->gender) == 'Male' ? 'selected' : '' }}>Male</option>
 									<option value="Female" {{ old('gender', Auth::user()->gender) == 'Female' ? 'selected' : '' }}>Female</option>
@@ -78,7 +78,7 @@
 								</select>
 							</div>
 
-							<button type="submit" class="btn btn-primary">Edit</button>
+							<button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
 						</form>
 					</div>
 				</div>

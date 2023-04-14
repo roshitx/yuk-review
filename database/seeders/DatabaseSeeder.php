@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        for ($i=0; $i < 20; $i++) { 
+        for ($i=0; $i < 120; $i++) { 
             $gender = $faker->randomElement(['Male','Female','Other']);
             User::create([
                 'name' => $faker->name,
