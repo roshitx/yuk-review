@@ -7,11 +7,11 @@
 			<div class="col-md-4">
 				<div class="card text-bg-primary mb-3 shadow-lg">
 					<div class="card-header">
-						<h5 class="card-title">Halo</h5>
+						<h5 class="card-title">Halo {{ auth()->user()->role == 'admin' ? 'Admin' : 'User'  }}</h5>
 						<strong>{{ auth()->user()->name }}!</strong>
 					</div>
 					<div class="card-body">
-						<p class="card-text">{{ auth()->user()->email }}</p>
+						<small class="card-text">{{ auth()->user()->email }}</small>
 					</div>
 				</div>
 				@if (session()->has('success'))

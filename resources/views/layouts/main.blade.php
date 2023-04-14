@@ -15,8 +15,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-	{{-- Sweetalert --}}
-	<script src="sweetalert2.all.min.js"></script>
+	{{-- SweetAlert --}}
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<title>YukReview | {{ $title }}</title>
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>

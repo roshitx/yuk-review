@@ -9,6 +9,7 @@ use App\Http\Controllers\UpdatePasswordController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ScrapperController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,8 @@ use App\Http\Controllers\UserController;
     Route::get('/', [ViewController::class, 'home'])->name('home');
     Route::get('/movies', [ViewController::class, 'allMovies'])->name('all.movies');
     Route::get('/detail/{id}', [ViewController::class, 'detail'])->name('detail.movies');
+    Route::post('/review/{id}', [ReviewController::class, 'store'])->name('review.store')->middleware('auth');
     Route::get('/movies/search', [ViewController::class, 'searchMovie'])->name('search.movies');
-
 // Routes profile && profile update
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth')->name('admin');
 Route::put('/admin/update', [AdminController::class, 'update'])->middleware('auth')->name('admin.update');

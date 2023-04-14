@@ -72,11 +72,13 @@
 						</a>
 					</div>
 				@endforeach
+				<div class="d-grid gap-2 mb-3">
+					<button class="btn btn-primary btn-lg" type="button">See All Movies <i class="bi bi-collection-play-fill"></i></button>
+				</div>
 			</div>
 			{{-- Pagination --}}
-				{{ $movies->links('pagination::bootstrap-5') }}
+			{{ $movies->links('pagination::bootstrap-5') }}
 		</div>
-
 
 	</div>
 	</div>

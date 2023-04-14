@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 
@@ -52,11 +53,13 @@ class ViewController extends Controller
 
     public function detail($id)
     {
-        $movie = Movie::findOrFail($id);
+        $movie = Movie::where('id', $id)->first();
+        $reviews = Review::where('id_movie', $movie->id)->get();
         return view('detail', [
             'title' => $movie->title,
             'active' => 'movies',
-            'movie' => $movie
+            'movie' => $movie,
+            'reviews' => $reviews
         ]);
     }
 }

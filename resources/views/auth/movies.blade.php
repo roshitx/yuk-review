@@ -32,7 +32,7 @@
 				</div>
 				@if (session('success'))
 					<div class="alert alert-success" role="alert">
-						{{ session('success') }}
+						<i class="bi bi-check-circle-fill"></i> {{ session('success') }}
 					</div>
 					<script>
 						Swal.fire({
@@ -43,7 +43,7 @@
 					</script>
 				@elseif (session('error'))
 					<div class="alert alert-danger" role="alert">
-						{{ session('error') }}
+						<i class="bi bi-x-circle-fill"></i> {{ session('error') }}
 					</div>
 					<script>
 						Swal.fire({
