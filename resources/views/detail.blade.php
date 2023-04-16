@@ -59,13 +59,18 @@
 					</div>
 					<div class="card-body">
 						<div class="overflow-auto" style="max-height: 400px;">
+							@if (count($reviews) <= 0)
+								<div class="text-center fs-6 fw-semibold text-muted">
+									<p>There's no review about {{ $movie->title }} yet</p>
+								</div>
+							@endif
 							@foreach ($reviews as $review)
 								<div class="review d-flex flex-column flex-md-row align-items-center justify-content-between p-4">
 									<div class="d-flex flex-column flex-md-row align-items-center">
 										<div class="rating">
-											@if ($review->rating == 10)
+											@if ($review->rating >= 8)
 												<span class="badge bg-success rounded-pill"><i class="bi bi-hand-thumbs-up-fill me-1"></i>Excellent!</span>
-											@elseif ($review->rating >= 6 && $review->rating <= 8)
+											@elseif ($review->rating >= 6 && $review->rating <= 7)
 												<span class="badge bg-primary rounded-pill"><i class="bi bi-hand-thumbs-up-fill me-1"></i>Good</span>
 											@elseif ($review->rating == 5)
 												<span class="badge bg-warning rounded-pill"><i class="bi bi-hand-thumbs-up-fill me-1"></i>OK</span>
@@ -90,6 +95,7 @@
 											</blockquote>
 											<figcaption class="blockquote-footer">
 												<cite title="Source Title">{{ $review->name }}</cite>
+												<br>
 												<small>{{ $review->created_at }}</small>
 											</figcaption>
 										</figure>

@@ -39,15 +39,15 @@ class ViewController extends Controller
                         ->orWhere('genre', 'LIKE', "%$query%")
                         ->orWhere('synopsis', 'LIKE', "%$query%")
                         ->paginate(5);
+            $request->session()->put('search', $query);
         }
 
-        
-
+        $search = $request->session()->get('search');
         return view('movies', [
             'title' => 'All Movies',
             'active' => 'movies',
             'movies' => $movies,
-            'query' => $query
+            'search' => $search,
         ]);
     }
 

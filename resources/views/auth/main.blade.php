@@ -9,7 +9,15 @@
 	{{-- Sweetalert --}}
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script src="https://kit.fontawesome.com/024c1ae29f.js" crossorigin="anonymous"></script>
-
+	<style>
+		.divider:after,
+		.divider:before {
+			content: "";
+			flex: 1;
+			height: 1px;
+			background: #eee;
+		}
+	</style>
 	<title>{{ $title }} - YukReview</title>
 
 	<!-- Custom styles for this template -->

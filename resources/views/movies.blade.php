@@ -18,7 +18,7 @@
 		{{-- Search bar --}}
 		<form action="{{ route('search.movies') }}" method="GET" class="mb-5">
 			<div class="input-group">
-				<input type="text" name="search" class="form-control" value="{{ old('search') }}" placeholder="Search movies by title, genre or synopsis...">
+				<input type="text" name="search" class="form-control" value="{{ $search ?? '' }}" placeholder="Search movies by title, genre or synopsis...">
 				<button type="submit" class="btn btn-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
 			</div>
 		</form>

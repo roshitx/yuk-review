@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         
         $faker = Faker::create('id_ID');
         User::create([
-            'name' => 'Muhammad Aulia Rasyid Alzahrawi',
+            'name' => 'Roshit',
             'email' => 'auliarasyidalzahrawi@gmail.com',
             'password' => bcrypt('rosyid07'),
             'gender' => 'Male',

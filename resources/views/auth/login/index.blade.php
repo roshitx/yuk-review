@@ -32,6 +32,16 @@
 					<form action="/login" method="post">
 						@csrf
 						<h2 class="fw-bolder mb-4">Login</h2>
+
+						<div class="d-grid">
+							<a class="btn btn-warning btn-lg" href="{{ route('google.login') }}" role="button">
+								<i class="fa-brands fa-google me-2"></i>Continue with Google
+							</a>
+						</div>
+
+						<div class="divider d-flex align-items-center my-4">
+							<p class="fw-bold text-muted mx-3 mb-0 text-center">OR</p>
+						</div>
 						{{-- Input Email --}}
 						<div class="form-floating mb-3">
 							<input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\ItemNotFoundException;
 
 class UserController extends Controller
@@ -60,4 +63,28 @@ class UserController extends Controller
         $movie->delete();
         return redirect()->back()->with('success', "User with id $id has been deleted");
     }
+
+    // Import & Export User
+    public function exportUser() 
+    {
+        return Excel::download(new UsersExport, 'user.xlsx');
+    }
+
+    public function importUser(Request $request)
+    {
+
+
+        try {
+            $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+            $file->move('DataUser', $fileName);
+            Excel::import(new UsersImport, public_path('/DataUser/'.$fileName));
+
+            return redirect()->route('user.index')->with('success', 'Users data imported successfully');
+        } catch (ItemNotFoundException $e) {
+            return redirect()->route('user.index')->with('error', 'Failed to import user data');
+        }
+
+    }
+
 }
