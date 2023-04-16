@@ -90,7 +90,7 @@
 									</div>
 									<div class="review-content mt-md-0 mt-4">
 										<figure class="text-end">
-											<blockquote class="blockquote">
+											<blockquote class="blockquote mt-3">
 												<p class="card-text fs-6 fst-italic mb-0"> {{ $review->review }} </p>
 											</blockquote>
 											<figcaption class="blockquote-footer">

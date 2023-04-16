@@ -56,6 +56,7 @@ Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
         Route::get('/edit/{id}', [MovieController::class, 'updateView'])->name('movie.edit');
         Route::post('/edit/{id}', [MovieController::class, 'update'])->name('movie.update');
         Route::delete('/destroy/{id}', [MovieController::class, 'destroy'])->name('movie.delete');
+        Route::get('/statistics', [MovieController::class, 'movieStatistics'])->name('movie.statistics');
     });
     // users
     Route::prefix('users')->group(function () {
@@ -63,8 +64,9 @@ Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
         Route::get('/edit/{id}', [UserController::class, 'viewEditUser'])->name('user.edit');
         Route::post('/edit/update', [UserController::class, 'updateUser'])->name('user.update');
         Route::delete('/destroy/{id}', [UserController::class, 'deleteUser'])->name('user.delete');
-        Route::get('exportuser', [UserController::class, 'exportUser'])->name('user.export');
-        Route::post('importuser', [UserController::class, 'importUser'])->name('users.import');
+        Route::get('/exportuser', [UserController::class, 'exportUser'])->name('user.export');
+        Route::post('/importuser', [UserController::class, 'importUser'])->name('users.import');
+        Route::get('/statistic', [UserController::class, 'genderStats'])->name('user.statistic');
     });
 });
 

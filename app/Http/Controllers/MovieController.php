@@ -86,4 +86,16 @@ class MovieController extends Controller
         return redirect()->back()->with('success', 'Movie has been deleted.');
     }
 
+    public function movieStatistics()
+    {
+
+        $rating_count = [];
+
+        for ($i = 1; $i <= 10; $i++) {
+            $rating_count[$i] = Movie::all()->where('rating', $i)->count();
+        }
+
+        return response()->json($rating_count);
+    }
+
 }

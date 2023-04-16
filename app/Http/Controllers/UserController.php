@@ -72,8 +72,6 @@ class UserController extends Controller
 
     public function importUser(Request $request)
     {
-
-
         try {
             $file = $request->file('file');
             $fileName = $file->getClientOriginalName();
@@ -84,7 +82,23 @@ class UserController extends Controller
         } catch (ItemNotFoundException $e) {
             return redirect()->route('user.index')->with('error', 'Failed to import user data');
         }
-
     }
+
+    // Chart Gender
+    public function genderStats()
+    {
+        $maleCount = User::where('gender', 'Male')->count();
+        $femaleCount = User::where('gender', 'Female')->count();
+        $otherCount = User::where('gender', 'Other')->count();
+
+        $data = [
+            'male' => $maleCount,
+            'female' => $femaleCount,
+            'other' => $otherCount,
+        ];
+
+        return response()->json($data);
+    }
+
 
 }

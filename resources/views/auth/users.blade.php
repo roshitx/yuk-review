@@ -79,6 +79,53 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-12 mt-5">
+				<div class="card mb-3 shadow-lg">
+					<div class="card-header text-bg-secondary">
+						<h5 class="card-title mb-0">Users Statistic by Gender</h5>
+					</div>
+					<div class="card-body d-flex justify-content-center">
+						<canvas id="genderChart" width="400" height="400"></canvas>
+						<script>
+							$(document).ready(function() {
+								$.ajax({
+									url: '{{ route('user.statistic') }}',
+									dataType: 'json',
+									success: function(data) {
+										var ctx = document.getElementById('genderChart').getContext('2d');
+										var myChart = new Chart(ctx, {
+											type: 'pie',
+											data: {
+												labels: ['Male', 'Female', 'Other'],
+												datasets: [{
+													label: 'Count',
+													data: [data.male, data.female, data.other],
+													backgroundColor: [
+														'rgba(255, 99, 132, 0.2)',
+														'rgba(54, 162, 235, 0.2)',
+														'rgba(255, 205, 86, 0.2)'
+													],
+													borderColor: [
+														'rgba(255, 99, 132, 1)',
+														'rgba(54, 162, 235, 1)',
+														'rgba(255, 205, 86, 1)'
+													],
+													borderWidth: 1
+												}]
+											},
+											options: {
+												responsive: false,
+												maintainAspectRatio: false
+											}
+										});
+									}
+								});
+							});
+						</script>
+					</div>
+				</div>
+			</div>
+
 		</div>
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
