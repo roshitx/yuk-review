@@ -11,21 +11,74 @@
 
 	<div class="container">
 
-		<div id="title-movies" style="position-relative" class="featured-movies mt-5 mb-2">
-			<h1 class="fs-3 fw-bolder pb-3 text-center text-white">All Movies</h1>
+		<div style="position-relative" class="divider d-flex align-items-center my-4 mt-5">
+			<h1 class="fw-bold text-white mx-3 mb-0 text-center">All Movies</h1>
 		</div>
 
 		{{-- Search bar --}}
 		<form action="{{ route('search.movies') }}" method="GET" class="mb-5">
 			<div class="input-group">
-				<input type="text" name="search" class="form-control" value="{{ $search ?? '' }}" placeholder="Search movies by title, genre or synopsis...">
+				<input type="text" name="search" class="form-control" value="{{ isset($search) ? $search : '' }}"
+					placeholder="Search movies by title, genre or synopsis...">
 				<button type="submit" class="btn btn-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
 			</div>
 		</form>
+		{{-- Filter by genre --}}
+		<div class="dropdown mb-4">
+			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownGenre" data-bs-toggle="dropdown"
+				aria-expanded="false">
+				Filter by Genre
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownGenre" style="max-height: 200px; overflow-y: auto">
+				<li><a class="dropdown-item" href="{{ route('all.movies') }}">All Genres</a></li>
+				<li><a class="dropdown-item" href="{{ route('filter.movies', ['genre' => 'Action']) }}">Action</a></li>
+				<li><a class="dropdown-item" href="{{ route('filter.movies', ['genre' => 'Drama']) }}">Drama</a></li>
+				<li><a class="dropdown-item" href="{{ route('filter.movies', ['genre' => 'Comedy']) }}">Comedy</a></li>
+				<li><a class="dropdown-item" href="{{ route('filter.movies', ['genre' => 'Horror']) }}">Horror</a></li>
+				<li><a class="dropdown-item" href="{{ route('filter.movies', ['genre' => 'Thriller']) }}">Thriller</a></li>
+				<li><a class="dropdown-item" href="{{ route('filter.movies', ['genre' => 'Sci-Fi']) }}">Sci-Fi</a></li>
+				<li><a class="dropdown-item" href="{{ route('filter.movies', ['genre' => 'Romance']) }}">Romance</a></li>
+				<li><a class="dropdown-item" href="{{ route('filter.movies', ['genre' => 'Superhero']) }}">Superhero</a></li>
+				<li><a class="dropdown-item" href="{{ route('filter.movies', ['genre' => 'Adventure']) }}">Adventure</a></li>
+				<li><a class="dropdown-item" href="{{ route('filter.movies', ['genre' => 'Mystery']) }}">Mystery</a></li>
+				<!-- Add more genres here -->
+			</ul>
+		</div>
+
+		{{-- All Movies --}}
+		@if (empty($selected_genre) && empty($search))
+			<div class="mb-3">
+				<h3 class="my-4">Showing all movies</h3>
+			</div>
+		@endif
+
+		{{-- Selected Genre --}}
+		@if (!empty($selected_genre))
+			<div class="mb-3">
+				<h5>Showing movies by Genre: {{ $selected_genre }}</h5>
+			</div>
+		@endif
+
+		{{-- Search On --}}
+		@if (!empty($search))
+			<div class="mb-3">
+				<h5>Showing movies by search: {{ $search }}</h5>
+			</div>
+		@endif
+
+		@if($movies->isEmpty())
+			@if(isset($search))
+				<p>Nothing match with "{{ $search }}"</p>
+			@elseif(isset($selected_genre))
+				<p>Nothing match with "{{ $selected_genre }}"</p>
+			@endif
+		@endif
+
 		{{-- Card movies --}}
 		<div class="row row-cols-md-3 row-cols-lg-5 row-cols-sm-2 row-cols-2 g-4">
 			@foreach ($movies as $movie)
-				<div class="col mb-3" onclick="window.location.href='{{ route('detail.movies', ['id' => $movie->id]) }}'" style="cursor: pointer;">
+				<div class="col mb-3" onclick="window.location.href='{{ route('detail.movies', ['id' => $movie->id]) }}'"
+					style="cursor: pointer;">
 					<div class="col mb-3">
 						<div class="card h-80">
 							<img src="{{ $movie->poster }}" class="card-img-top" alt="Poster Movie" style="">

@@ -17,8 +17,20 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 	{{-- SweetAlert --}}
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+	<link rel="icon" type="image/x-icon" href="{{ asset('ico/main.ico') }}">
 	<title>YukReview | {{ $title }}</title>
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+		<style>
+		.divider:after,
+		.divider:before {
+			content: "";
+			flex: 1;
+			border-radius: 5px;
+			height: 3px;
+			background: #eee;
+		}
+	</style>
 </head>
 
 <body>

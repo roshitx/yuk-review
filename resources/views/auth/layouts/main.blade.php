@@ -26,6 +26,8 @@
 	<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 	{{-- Chart.js --}}
 	<script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+
+	<link rel="icon" type="image/x-icon" href="{{ asset('ico/dashboard.ico') }}">
 	<title>{{ $title }} - YukReview</title>
 
 

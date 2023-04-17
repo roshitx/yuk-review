@@ -28,6 +28,8 @@ use App\Http\Controllers\UpdatePasswordController;
     Route::get('/detail/{id}', [ViewController::class, 'detail'])->name('detail.movies');
     Route::post('/review/{id}', [ReviewController::class, 'store'])->name('review.store')->middleware('auth');
     Route::get('/movies/search', [ViewController::class, 'searchMovie'])->name('search.movies');
+    Route::get('/movies/genre/{genre}', [ViewController::class, 'filterMovies'])->name('filter.movies');
+
 // Routes profile && profile update
 Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth')->name('admin');
 Route::put('/admin/update', [AdminController::class, 'update'])->middleware('auth')->name('admin.update');

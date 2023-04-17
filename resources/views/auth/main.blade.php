@@ -18,6 +18,8 @@
 			background: #eee;
 		}
 	</style>
+
+	<link rel="icon" type="image/x-icon" href="{{ asset('ico/main.ico') }}">
 	<title>{{ $title }} - YukReview</title>
 
 	<!-- Custom styles for this template -->

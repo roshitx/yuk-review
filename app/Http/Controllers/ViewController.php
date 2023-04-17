@@ -28,28 +28,56 @@ class ViewController extends Controller
         ]);
     }
 
-    public function searchMovie(Request $request)
-    {
-        $query = $request->input('search');
+public function searchMovie(Request $request)
+{
+    $query = $request->input('search');
 
-        if (empty($query)) {
-            $movies = Movie::all();
-        } else {
-            $movies = Movie::where('title', 'LIKE', "%$query%")
-                        ->orWhere('genre', 'LIKE', "%$query%")
-                        ->orWhere('synopsis', 'LIKE', "%$query%")
-                        ->paginate(5);
-            $request->session()->put('search', $query);
+    if (empty($query)) {
+        $movies = Movie::all();
+        $search = '';
+    } else {
+        $movies = Movie::where('title', 'LIKE', "%$query%")
+            ->orWhere('genre', 'LIKE', "%$query%")
+            ->orWhere('synopsis', 'LIKE', "%$query%")
+            ->paginate(5);
+        $request->session()->put('search', $query);
+        $search = $query;
+    }
+
+    return view('movies', [
+        'title' => 'All Movies',
+        'active' => 'movies',
+        'movies' => $movies,
+        'search' => $search,
+    ]);
+}
+
+
+    public function filterMovies(Request $request, $genre)
+    {
+        $movies = Movie::query();
+
+        if ($genre) {
+            $genres = explode('/', $genre);
+            foreach ($genres as $genre) {
+                $movies->orWhere('genre', 'LIKE', '%' . $genre . '%');
+            }
         }
 
-        $search = $request->session()->get('search');
+        $movies = $movies->get();
+
         return view('movies', [
             'title' => 'All Movies',
             'active' => 'movies',
             'movies' => $movies,
-            'search' => $search,
+            'selected_genre' => $genre,
         ]);
     }
+
+
+
+
+
 
     public function detail($id)
     {
