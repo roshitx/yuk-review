@@ -27,7 +27,7 @@
 								<span><i class="bi bi-star-fill"></i> {{ $movie->rating }}/10</span>
 							</div>
 							<div class="mb-1">
-								<span><i class="bi bi-person-check-fill"></i> {{ $movie->rating_count }}</span>
+								<span><i class="bi bi-person-check-fill"></i> {{ number_format($movie->rating_count) }} person</span>
 							</div>
 							<div class="mt-3">
 								<span class="fs-5 fw-bold"><i class="bi bi-file-text"></i> Synopsis</span>
@@ -60,7 +60,7 @@
 					<div class="card-body">
 						<div class="overflow-auto" style="max-height: 400px;">
 							@if (count($reviews) <= 0)
-								<div class="text-center fs-6 fw-semibold text-muted">
+								<div class="fs-6 fw-semibold text-muted text-center">
 									<p>There's no review about {{ $movie->title }} yet</p>
 								</div>
 							@endif
@@ -115,24 +115,68 @@
 						<h4 class="card-title fw-bold m-0 text-center">Form for review</h4>
 					</div>
 					<div class="card-body">
-						<form action="{{ route('review.store', $movie->id) }}" method="POST">
+						<form action="{{ route('review.store', $movie->id) }}" method="POST" id="review-form">
 							@csrf
 							<div class="form-group mb-3">
 								<label for="rating" class="form-label">Rating: <span class="text-danger">*</span></label>
-								<select class="form-select" id="rating" aria-describedby="ratingHelp" name="rating">
+								<select class="form-select @error('rating') is-invalid @enderror" id="rating" aria-describedby="ratingHelp" name="rating">
 									<option value="">-- Select rating --</option>
 									@for ($i = 1; $i <= 10; $i++)
 										<option value="{{ $i }}">★ {{ $i }}
 										</option>
 									@endfor
 								</select>
+																@error('rating')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 								<div id="ratingHelp" class="form-text">Choose between 1 to 10.</div>
 							</div>
-							<div class="mb-3">
+							<div class="form-group mb-3">
 								<label for="review" class="form-label">Review: <span class="text-danger">*</span></label>
-								<textarea class="form-control" id="review" rows="3" aria-describedby="reviewHelp" name="review"></textarea>
-								<div id="reviewHelp" class="form-text">Write your review.</div>
+								<textarea class="form-control @error('review') is-invalid @enderror" id="review" rows="3"
+								name="review" placeholder="Write your review"></textarea>
+								@error('review')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
+							<div class="form-group mb-3">
+								<label for="captcha" class="form-label">Captcha: <span class="text-danger">*</span></label>
+								<div class="captcha">
+									<span id="captcha_img">{!! captcha_img('flat') !!}</span>
+									<button type="button" onclick="reloadCaptcha()" class="btn btn-danger reload" id="reload">
+										&#x21bb;
+									</button>
+									<script>
+										function reloadCaptcha(params) {
+											var url = "{{ route('reload.captcha') }}"
+											fetch(url, {
+													method: "GET",
+												})
+												.then(response => response.json())
+												.then((response) => {
+													let data = response.captcha;
+													let span = document.getElementById('captcha_img');
+													span.innerHTML = data;
+												})
+										}
+									</script>
+								</div>
+								<div class="col-md-4 mt-2">
+									<input type="text" id="captcha" class="form-control @error('captcha') is-invalid @enderror"
+										placeholder="Enter Captcha" name="captcha">
+									@error('captcha')
+										<div class="invalid-feedback" role="alert">
+											{{ $message }}
+										</div>
+									@enderror
+								</div>
+
+							</div>
+
 							<button type="submit" class="btn btn-warning w-100">Submit</button>
 						</form>
 					</div>

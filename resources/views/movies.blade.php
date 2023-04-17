@@ -68,9 +68,9 @@
 
 		@if($movies->isEmpty())
 			@if(isset($search))
-				<p>Nothing match with "{{ $search }}"</p>
+				<p>Nothing matches with "{{ $search }}"</p>
 			@elseif(isset($selected_genre))
-				<p>Nothing match with "{{ $selected_genre }}"</p>
+				<p>Nothing matches with "{{ $selected_genre }}"</p>
 			@endif
 		@endif
 

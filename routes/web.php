@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ScrapperController;
 use App\Http\Controllers\UpdatePasswordController;
@@ -71,6 +72,9 @@ Route::middleware(['auth', 'admin'])->prefix('dashboard')->group(function () {
         Route::get('/statistic', [UserController::class, 'genderStats'])->name('user.statistic');
     });
 });
+
+// Captcha 
+Route::get('/reload-captcha', [CaptchaController::class, 'reloadCaptcha'])->name('reload.captcha');
 
 
 // Login by Google

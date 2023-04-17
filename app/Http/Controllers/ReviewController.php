@@ -13,8 +13,9 @@ class ReviewController extends Controller
     {
         // Validasi input dari form
         $validatedData = $request->validate([
+            'captcha' => 'required|captcha',
             'rating' => 'required|numeric',
-            'review' => 'required|string|max:150',
+            'review' => 'required|string|min:5|max:150',
         ]);
 
         // Cari movie dengan id yang diberikan
