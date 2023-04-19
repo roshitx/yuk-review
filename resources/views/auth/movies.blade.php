@@ -20,8 +20,13 @@
 							@csrf
 							<div class="form-group">
 								<label for="imdbUrl" class="form-label">Put IMDb Link <span class="text-danger">*</span></label>
-								<input id="imdbUrl" type="text" class="form-control" name="imdbUrl"
+								<input id="imdbUrl" type="text" class="form-control @error('imdbUrl') is-invalid @enderror" name="imdbUrl"
 									placeholder="Example : https://www.imdb.com/title/tt4154796/?ref_=ext_shr_lnk">
+								@error('imdbUrl')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 								<div class="d-flex justify-content-end mt-3 mb-3">
 									<button type="submit" id="submit-button" class="btn btn-primary"><i class="fa-solid fa-rotate"></i>
 										Scrap</button>
@@ -64,55 +69,104 @@
 							@csrf
 							<div class="mb-3">
 								<label for="title">Title: <span class="text-danger">*</span></label>
-								<input type="text" id="title" name="title" class="form-control" placeholder="Example : Interstellar">
+								<input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror"
+									placeholder="Example : Interstellar">
+								@error('title')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
 							<div class="mb-3">
 								<label for="genre">Genre: <span class="text-danger">*</span></label>
-								<input type="text" id="genre" name="genre" class="form-control" placeholder="Example : Scifi / Drama">
+								<input type="text" id="genre" name="genre" class="form-control @error('genre') is-invalid @enderror"
+									placeholder="Example : Scifi / Drama">
+								@error('genre')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
 							<div class="mb-3">
 								<label for="duration">Duration: <span class="text-danger">*</span></label>
-								<input type="text" id="duration" name="duration" class="form-control" placeholder="Example : 169 min">
+								<input type="text" id="duration" name="duration" class="form-control @error('duration') is-invalid @enderror"
+									placeholder="Example : 169 min">
+								@error('duration')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
 							<div class="mb-3">
 								<label for="year">Year Release: <span class="text-danger">*</span></label>
-								<input type="text" id="year" name="year" class="form-control" placeholder="Example : 2014">
+								<input type="text" id="year" name="year" class="form-control @error('year') is-invalid @enderror"
+									placeholder="Example : 2014">
+								@error('year')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
 							<div class="mb-3">
 								<label for="synopsis">Synopsis: <span class="text-danger">*</span></label>
-								<textarea name="synopsis" id="synopsis" cols="30" rows="10" class="form-control"
-								 placeholder="Write a synopsis here..."></textarea>
+								<textarea name="synopsis" id="synopsis" cols="30" rows="10"
+								 class="form-control @error('synopsis') is-invalid @enderror" placeholder="Write a synopsis here..."></textarea>
+								@error('synopsis')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
 							<div class="mb-3">
 								<label for="poster">Poster <small>(URL)</small><span class="text-danger">*</span></label>
-								<input type="text" id="poster" name="poster" class="form-control"
+								<input type="text" id="poster" name="poster" class="form-control @error('poster') is-invalid @enderror"
 									placeholder="Example : amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UY1200_CR90,0,630,1200_AL_.jpg">
+								@error('poster')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
 							<div class="mb-3">
 								<label for="trailer">Trailer <small>(URL)</small><span class="text-danger">*</span></label>
-								<input type="text" id="trailer" name="trailer" class="form-control"
+								<input type="text" id="trailer" name="trailer"
+									class="form-control @error('trailer') is-invalid @enderror"
 									placeholder="Example : https://www.imdb.com/video/imdb/vi1586278169/imdb/embed">
+								@error('trailer')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
 							<div class="mb-3">
 								<label for="rating_count">Rating Count: <span class="text-danger">*</span></label>
-								<input type="text" id="rating_count" name="rating_count" class="form-control"
-									placeholder="Example : 1888905">
+								<input type="text" id="rating_count" name="rating_count"
+									class="form-control @error('rating_count') is-invalid @enderror" placeholder="Example : 1888905">
+								@error('rating_count')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
 							<div class="mb-3">
 								<label for="rating">Rating: <span class="text-danger">*</span></label>
-								<select name="rating" id="rating" class="form-select">
+								<select name="rating" id="rating" class="form-select @error('rating') is-invalid @enderror">
 									@for ($i = 1; $i <= 10; $i++)
 										<option value="{{ $i }}">★ {{ $i }}
 										</option>
 									@endfor
 								</select>
+								@error('rating')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
 							<div class="d-flex justify-content-end mb-3">
 								<button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add</button>
 							</div>
 						</form>
 					</div>
-
 				</div>
 			</div>
 		</div>

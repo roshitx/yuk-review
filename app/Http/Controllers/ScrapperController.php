@@ -18,7 +18,7 @@ class ScrapperController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with('error', 'You must enter a valid imdb url');
+            return redirect()->back()->with('error', 'You must enter a valid IMDb url');
         }
 
         $IMDB = new IMDBController($request->imdbUrl);

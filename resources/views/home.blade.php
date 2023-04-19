@@ -73,7 +73,7 @@
 					</div>
 				@endforeach
 				<div class="d-grid gap-2 mb-3">
-					<button class="btn btn-primary btn-lg" type="button">See All Movies <i class="bi bi-collection-play-fill"></i></button>
+					<a class="btn btn-primary btn-lg" href="{{ route('all.movies') }}" type="button">See All Movies <i class="bi bi-collection-play-fill"></i></a>
 				</div>
 			</div>
 			{{-- Pagination --}}

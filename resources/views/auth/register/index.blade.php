@@ -88,6 +88,39 @@
 								</select>
 							</div>
 						</div>
+
+						<div class="form-group mb-3">
+							<label for="captcha" class="form-label">Captcha: <span class="text-danger">*</span></label>
+							<div class="captcha">
+								<span id="captcha_img">{!! captcha_img('flat') !!}</span>
+								<button type="button" onclick="reloadCaptcha()" class="btn btn-danger reload" id="reload">
+									&#x21bb;
+								</button>
+								<script>
+									function reloadCaptcha(params) {
+										var url = "{{ route('reload.captcha') }}"
+										fetch(url, {
+												method: "GET",
+											})
+											.then(response => response.json())
+											.then((response) => {
+												let data = response.captcha;
+												let span = document.getElementById('captcha_img');
+												span.innerHTML = data;
+											})
+									}
+								</script>
+							</div>
+							<div class="col-md-6 mt-2">
+								<input type="text" id="captcha" class="form-control @error('captcha') is-invalid @enderror"
+									placeholder="Enter Captcha" name="captcha">
+								@error('captcha')
+									<div class="invalid-feedback" role="alert">
+										{{ $message }}
+									</div>
+								@enderror
+							</div>
+						</div>
 						{{-- Akhir Gender --}}
 						<div class="text-lg-start mt-4 pt-2 text-center">
 							<button type="submit" class="d-block btn btn-warning"

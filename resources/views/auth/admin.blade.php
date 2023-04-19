@@ -7,38 +7,38 @@
 			<div class="col-md-4">
 				<div class="card text-bg-primary mb-3 shadow-lg">
 					<div class="card-header">
-						<h5 class="card-title">Halo {{ auth()->user()->role == 'admin' ? 'Admin' : 'User'  }}</h5>
+						<h5 class="card-title">Halo {{ auth()->user()->role === 'admin' ? 'Admin' : 'User' }}</h5>
 						<strong>{{ auth()->user()->name }}!</strong>
 					</div>
 					<div class="card-body">
 						<small class="card-text">{{ auth()->user()->email }}</small>
 					</div>
 				</div>
-				@if (session()->has('success'))
-					<div class="alert alert-success" role="alert">
-						{{ session('success') }}
-					</div>
-					<script>
-						Swal.fire({
-							icon: 'success',
-							title: 'Success',
-							text: '{{ session('success') }}',
-						});
-					</script>
-				@endif
-				@if (session()->has('error')))
-					<div class="alert alert-danger" role="alert">
-						{{ session('error') }}
-					</div>
-					<script>
-						Swal.fire({
-							icon: 'error',
-							title: 'Error',
-							text: '{{ session('error') }}',
-						});
-					</script>
-				@endif
+
+				@php
+					$alertType = [
+					    'success' => 'success',
+					    'error' => 'danger',
+					];
+				@endphp
+
+				@foreach ($alertType as $key => $type)
+					@if (session()->has($key))
+						<div class="alert alert-{{ $type }} alert-dismissible fade show" role="alert">
+							{{ session($key) }}
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+						<script>
+							Swal.fire({
+								icon: '{{ $type }}',
+								title: '{{ ucfirst($key) }}',
+								text: '{{ session($key) }}',
+							});
+						</script>
+					@endif
+				@endforeach
 			</div>
+
 			<div class="col-md-8">
 				<div class="card shadow-lg">
 					<div class="card-header bg-warning">
@@ -49,7 +49,7 @@
 							@csrf
 							@method('put')
 							<div class="mb-3">
-								<label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+								<label for="name" class="form-label">Name: <span class="text-danger">*</span></label>
 								<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
 									value="{{ old('name', Auth::user()->name) }}" required>
 								@error('name')
@@ -57,7 +57,7 @@
 								@enderror
 							</div>
 							<div class="mb-3">
-								<label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+								<label for="email" class="form-label">Email: <span class="text-danger">*</span></label>
 								<input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
 									value="{{ old('email', Auth::user()->email) }}" required>
 								@error('email')
@@ -70,7 +70,7 @@
 									value="{{ old('birth', Auth::user()->birth) }}">
 							</div>
 							<div class="mb-3">
-								<label for="gender" class="form-label">Gender <span class="text-danger">*</span></label>
+								<label for="gender" class="form-label">Gender: <span class="text-danger">*</span></label>
 								<select class="form-select" name="gender" id="gender">
 									<option value="Male" {{ old('gender', Auth::user()->gender) == 'Male' ? 'selected' : '' }}>Male</option>
 									<option value="Female" {{ old('gender', Auth::user()->gender) == 'Female' ? 'selected' : '' }}>Female</option>

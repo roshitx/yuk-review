@@ -39,7 +39,7 @@
 							@csrf
 							@method('put')
 							<div class="mb-3">
-								<label for="current_password" class="form-label">Current Password <span class="text-danger">*</span></label>
+								<label for="current_password" class="form-label">Current Password: <span class="text-danger">*</span></label>
 								<input type="password" class="form-control @error('current_password') is-invalid @enderror" id="current_password"
 									name="current_password" aria-describedby="currentPassword">
 								<div id="currentPassword" class="form-text">Please fill your correct current password</div>
@@ -48,7 +48,7 @@
 								@enderror
 							</div>
 							<div class="mb-3">
-								<label for="password" class="form-label">New Password <span class="text-danger">*</span></label>
+								<label for="password" class="form-label">New Password: <span class="text-danger">*</span></label>
 								<input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
 									name="password">
 								@error('password')
@@ -56,7 +56,7 @@
 								@enderror
 							</div>
 							<div class="mb-3">
-								<label for="password_confirmation" class="form-label">Password Confirmation <span
+								<label for="password_confirmation" class="form-label">Password Confirmation: <span
 										class="text-danger">*</span></label>
 								<input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
 									id="password_confirmation" name="password_confirmation">

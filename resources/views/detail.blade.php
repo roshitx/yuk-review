@@ -119,14 +119,15 @@
 							@csrf
 							<div class="form-group mb-3">
 								<label for="rating" class="form-label">Rating: <span class="text-danger">*</span></label>
-								<select class="form-select @error('rating') is-invalid @enderror" id="rating" aria-describedby="ratingHelp" name="rating">
+								<select class="form-select @error('rating') is-invalid @enderror" id="rating" aria-describedby="ratingHelp"
+									name="rating">
 									<option value="">-- Select rating --</option>
 									@for ($i = 1; $i <= 10; $i++)
 										<option value="{{ $i }}">★ {{ $i }}
 										</option>
 									@endfor
 								</select>
-																@error('rating')
+								@error('rating')
 									<div class="invalid-feedback" role="alert">
 										{{ $message }}
 									</div>
@@ -135,8 +136,8 @@
 							</div>
 							<div class="form-group mb-3">
 								<label for="review" class="form-label">Review: <span class="text-danger">*</span></label>
-								<textarea class="form-control @error('review') is-invalid @enderror" id="review" rows="3"
-								name="review" placeholder="Write your review"></textarea>
+								<textarea class="form-control @error('review') is-invalid @enderror" id="review" rows="3" name="review"
+								 placeholder="Write your review"></textarea>
 								@error('review')
 									<div class="invalid-feedback" role="alert">
 										{{ $message }}
@@ -174,7 +175,6 @@
 										</div>
 									@enderror
 								</div>
-
 							</div>
 
 							<button type="submit" class="btn btn-warning w-100">Submit</button>

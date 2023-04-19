@@ -22,12 +22,12 @@ class MovieController extends Controller
             'title' => 'required',
             'genre' => 'required',
             'duration' => 'required',
-            'year' => 'required',
-            'synopsis' => 'required',
-            'poster' => 'required',
-            'trailer' => 'required',
-            'rating' => 'required',
-            'rating_count' => 'required'
+            'year' => 'required|numeric',
+            'synopsis' => 'required|min:10',
+            'poster' => 'required|url',
+            'trailer' => 'required|url',
+            'rating' => 'required|numeric',
+            'rating_count' => 'required|numeric'
         ]);
 
         try {

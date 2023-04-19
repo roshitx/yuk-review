@@ -16,18 +16,24 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function store(Request $req)
+    public function store(Request $request)
     {
-        $validatedData = $req->validate([
-            'email' => 'required|email:dns|unique:users',
-            'name' => 'required|max:255|string',
-            'password' => 'required|confirmed|min:5|max:255',
-            'gender' => 'required|in:Male,Female,Other'
+        $validatedData = $request->validate([
+            'captcha' => ['required', 'captcha'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email:dns', 'unique:users'],
+            'gender' => ['required', 'in:Male,Female,Other'],
+            'password' => ['required', 'string', 'min:5', 'max:255', 'confirmed'],
         ]);
 
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'gender' => $validatedData['gender'],
+            'password' => Hash::make($validatedData['password']),
+        ]);
 
-        User::create($validatedData);
-        return redirect('/login')->with('success', 'Registration successfull! Please login');
+        return redirect('/login')->with('success', 'Registration successful! Please login.');
     }
+
 }
